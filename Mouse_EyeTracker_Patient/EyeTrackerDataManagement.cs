@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace namespaceProgram
+namespace Mouse_EyeTracker_Patient
 {
 
     /// <summary>
@@ -13,14 +13,6 @@ namespace namespaceProgram
     /// </summary>
     class EyeTrackerDataManagement
     {
-        private int rawXPosition { get; set; } = 0;
-        private int rawYPosition { get; set; } = 0;
-        private int updateXPosition { get; set; } = 0;
-        private int updateYPosition { get; set; } = 0;
-
-
-
-
         #region Cursor's position variables
 
         /// <summary>
@@ -36,6 +28,10 @@ namespace namespaceProgram
         private static List<int> Y_CursorAveragePosition_Remembered = new List<int>();
         private static List<int> X_CursorRawPosition_Remembered = new List<int>();
         private static List<int> Y_CursorRawPosition_Remembered = new List<int>();
+        private int rawXPosition { get; set; } = 0;
+        private int rawYPosition { get; set; } = 0;
+        public int updateXPosition { get; set; } = 0;
+        public int updateYPosition { get; set; } = 0;
         private static int X_Sum_CursorRawPosition = 0;
         private static int Y_Sum_CursorRawPosition = 0;
         #endregion
@@ -43,10 +39,8 @@ namespace namespaceProgram
         /// <summary>
         /// Initialisation of the lists used for calculating the cursor's position
         /// </summary>
-        public void InitialisationCursorPosition()
+        public EyeTrackerDataManagement()
         {
-            mmgt.isCursorAllowedToMove = true;
-            // Console.WriteLine("InitialisationCursorPosition" + this.isCursorAllowedToMove);
             for (int i = 0; i < numberOfPositionRemembered; i++)
             {
                 X_CursorRawPosition_Remembered.Add(0);
@@ -95,7 +89,7 @@ namespace namespaceProgram
 
 
 
-
+        #region GazeDataStream Event
         public EventHandler CursorInBottomMidlleScreen;
 
         protected virtual void OnCursorInBottomMidlleScreen(EventArgs e)
@@ -121,12 +115,35 @@ namespace namespaceProgram
             updateXPosition = UpdateCursorPosition(rawXPosition, "x");
             updateYPosition = UpdateCursorPosition(rawYPosition, "y");
 
-            if(updateYPosition >= Screen.PrimaryScreen.Bounds.Height - 10 )
+            if (updateYPosition >= Screen.PrimaryScreen.Bounds.Height - 10)
             {
                 OnCursorInBottomMidlleScreen(new EventArgs());
             }
+           
+        }
+        #endregion
 
-            mmgt.MoveMouse(updateXPosition, updateYPosition, mmgt.getIsCursorAllowedToMove());
+        #region GazeTracking Event
+        public EventHandler GazeTracked;
+        public EventHandler GazeNotTracked;
+
+        protected virtual void OnGazeTracked(EventArgs e)
+        {
+            if (GazeTracked != null)
+                GazeTracked(this, e);
+            else
+            {
+                Console.WriteLine("NullPointer OnGazeTracked");
+            }
+        }
+        protected virtual void OnGazeNotTracked(EventArgs e)
+        {
+            if (GazeNotTracked != null)
+                GazeNotTracked(this, e);
+            else
+            {
+                Console.WriteLine("NullPointer OnGazeNotTracked");
+            }
         }
 
         /// <summary>
@@ -140,70 +157,16 @@ namespace namespaceProgram
         {
             //Console.WriteLine("Gaze tracking (state-changed event): {0}", e);
 
-
             if (e.Value.ToString().Equals("GazeNotTracked"))
             {
-                Console.Beep(200, 100);
-
-
-                //if first eyes closing, freezing cursor and running blinkveryfing timer
-                if (!tbm.isVerifyingBlinkTimer && !tbm.isFirstBlinkTimer)
-                {
-                    mmgt.setIsCursorAllowedToMove (false);
-                    //Console.WriteLine("cursorDoesNotMove first blink");
-
-
-                    tbm.StartTimer(TimerBlinkManagement.TimersAvailable.verifyingBlinkTimer);
-                    //Console.WriteLine("fermeture sans rien, lance vérification clin d'oeil 1, curseur freeze");
-
-                    if (StaticClass.isPanel1Activated && StaticClass.isPanel2Activated && StaticClass.isPanel3Activated && StaticClass.isPanel4Activated )
-                    {
-                        StaticClass.freezeCount += 1;
-                    }
-                    if (StaticClass.isPanel1Activated && StaticClass.isPanel2Activated && StaticClass.isPanel3Activated && StaticClass.isPanel4Activated
-                        && StaticClass.isCursorOnPanel1 && !StaticClass.isReadyToClick && StaticClass.freezeCount > 1)
-                    {
-                        StaticClass.isReadyToClick = true;
-                    }
-                }
-
-                //second eyes closing, run blinkverifying
-                if (tbm.isFirstBlinkTimer)
-                {
-                    tbm.StartTimer(TimerBlinkManagement.TimersAvailable.verifyingBlinkTimer);
-                    //Console.WriteLine("fermeture durant first timer, lance vérif, premier timer tourne ");
-                }
+                OnGazeNotTracked(new EventArgs());
             }
-            else
+
+            if (e.Value.ToString().Equals("GazeTracked"))
             {
-
-                if (e.Value.ToString().Equals("GazeTracked"))
-                {
-                    // Opening after first verification (firsttimer is false), 
-                    if (tbm.isVerifyingBlinkTimer && !tbm.isFirstBlinkTimer)
-                    {
-                        tbm.CloseTimer(TimerBlinkManagement.TimersAvailable.verifyingBlinkTimer);
-                        tbm.StartTimer(TimerBlinkManagement.TimersAvailable.firstBlinkTimer);
-
-                        //Console.WriteLine("ouverture après vérif 1, lance firstTimer ");
-                        //Console.WriteLine();
-                    }
-
-                    if (tbm.isVerifyingBlinkTimer && tbm.isFirstBlinkTimer)
-                    {
-                        //Console.WriteLine("début second timer");
-                        tbm.CloseTimer(TimerBlinkManagement.TimersAvailable.verifyingBlinkTimer);
-                        tbm.CloseTimer(TimerBlinkManagement.TimersAvailable.firstBlinkTimer);
-
-                        leftEyeCounter = 0;
-                        rightEyeCounter = 0;
-                        tbm.StartTimer(TimerBlinkManagement.TimersAvailable.secondBlinkTimer);
-
-                        // Console.WriteLine("ouverture durant first timer, lancement second timer");
-                        //console.WriteLine();
-                    }
-                }
+                OnGazeTracked(new EventArgs());
             }
         }
+        #endregion
     }
 }

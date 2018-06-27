@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-namespace namespaceProgram
+namespace Mouse_EyeTracker_Patient
 {
 
     /// <summary>
@@ -11,7 +11,7 @@ namespace namespaceProgram
     public class MouseManagement
     {
 
-        private Boolean isCursorAllowedToMove;
+        private Boolean isCursorAllowedToMove = true;
 
         public EventHandler CursorAllowedToMove;
         public EventHandler CursorNotAllowedToMove;
@@ -38,12 +38,12 @@ namespace namespaceProgram
 
         public bool getIsCursorAllowedToMove()
         {
-            return this.isCursorAllowedToMove;
+            return isCursorAllowedToMove;
         }
 
         public void setIsCursorAllowedToMove(Boolean value)
         {
-            this.isCursorAllowedToMove = value;
+            isCursorAllowedToMove = value;
 
             if (value == true)
             {

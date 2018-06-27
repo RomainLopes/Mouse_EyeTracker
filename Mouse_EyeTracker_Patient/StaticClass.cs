@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace namespaceProgram
+namespace Mouse_EyeTracker_Patient
 {
     class StaticClass
     {

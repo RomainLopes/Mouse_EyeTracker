@@ -1,18 +1,43 @@
 ﻿using System;
 //using namespaceProgram;
 
-namespace namespaceProgram
+namespace Mouse_EyeTracker_Patient
 {
     /// <summary>
     /// Timer's management methods, each timer get a public boolean that inform if the timer is running
     /// </summary>
     public class TimerBlinkManagement
     {
-        #region timers instanciation
+        #region boolean data on is XXX timer's running
+        private bool isVerifyingBlinkTimer = false;
+        private bool isFirstBlinkTimer = false;
+       
+
+        public bool getIsVerifyingBlinkTimer()
+        {
+            return isVerifyingBlinkTimer;
+        }
+        public bool getIsFirstBlinkTimer()
+        {
+            return isFirstBlinkTimer;
+        }
+
+
+        public void setIsVerifyingBlinkTimer(Boolean value)
+        {
+            isVerifyingBlinkTimer = value;
+        }
+        public void setIsFirstBlinkTimer(Boolean value)
+        {
+            isFirstBlinkTimer = value;
+        }
+
+
+        #endregion
+
+            #region timers instanciation
         private static System.Timers.Timer verifyingBlinkTimer;
         private static System.Timers.Timer firstBlinkTimer;
-        private static System.Timers.Timer secondBlinkTimer;
-        private MouseManagement mmgt;
         #endregion
 
         /// <summary>
@@ -22,21 +47,43 @@ namespace namespaceProgram
         {
             verifyingBlinkTimer,
             firstBlinkTimer,
-            secondBlinkTimer
         }
 
 
-        public void setMouseManagement(MouseManagement mmgt)
+        public EventHandler VerifyingTimerIsUp;
+        public EventHandler FirstTimerIsUp;
+        public EventHandler AllowingCursorToMove;
+
+        protected virtual void OnAllowingCursorToMove(EventArgs e)
         {
-            this.mmgt = mmgt;
+            if (AllowingCursorToMove != null)
+                AllowingCursorToMove(this, e);
+            else
+            {
+                Console.WriteLine("NullPointer OnAllowingCursorToMove");
+            }
+        }
+        protected virtual void OnVerifyingTimerIsUp(EventArgs e)
+        {
+            if (VerifyingTimerIsUp != null)
+                VerifyingTimerIsUp(this, e);
+            else
+            {
+                Console.WriteLine("NullPointer OnVerifyingTimerIsUp");
+            }
         }
 
+        protected virtual void OnFirstTimerIsUp(EventArgs e)
+        {
+            if (FirstTimerIsUp != null)
+                FirstTimerIsUp(this, e);
+            else
+            {
+                Console.WriteLine("NullPointer OnFirstTimerIsUp");
+            }
+        }
 
-        #region boolean data on is XXX timer's running
-        public bool isVerifyingBlinkTimer { get; set; } = false;
-        public bool isFirstBlinkTimer { get; set; } = false;
-        public bool isSecondBlinkTimer { get; set; } = false;
-        #endregion
+       
 
         /// <summary>
         /// Construct that initialize the timers
@@ -53,11 +100,6 @@ namespace namespaceProgram
             firstBlinkTimer.Interval = 2500;
             firstBlinkTimer.Elapsed += (sender, e) => OnfirstBlinkTimerEvent(sender, e);
             firstBlinkTimer.AutoReset = false;
-
-            secondBlinkTimer = new System.Timers.Timer();
-            secondBlinkTimer.Interval = 600;
-            secondBlinkTimer.Elapsed += (sender, e) => OnSecondBlinkTimerEvent(sender, e, EyeTrackerDataManagement.updateXPosition, EyeTrackerDataManagement.updateYPosition);
-            secondBlinkTimer.AutoReset = false;
 
         }
 
@@ -78,10 +120,6 @@ namespace namespaceProgram
                     isFirstBlinkTimer = true;
                     firstBlinkTimer.Start();
                     break;
-                case TimersAvailable.secondBlinkTimer:
-                    isSecondBlinkTimer = true;
-                    secondBlinkTimer.Start();
-                    break;
                 default:
                     throw new ArgumentException("Unhandled timer: " + timerName);
             }
@@ -98,15 +136,12 @@ namespace namespaceProgram
                 case TimersAvailable.verifyingBlinkTimer:
                     isVerifyingBlinkTimer = false;
                     verifyingBlinkTimer.Stop();
-                    mmgt.setIsCursorAllowedToMove(true); //---------------------------------------------
+                    OnAllowingCursorToMove(new EventArgs());
+                   // mmgt.setIsCursorAllowedToMove(true); //---------------------------------------------
                     break;
                 case TimersAvailable.firstBlinkTimer:
                     isFirstBlinkTimer = false;
                     firstBlinkTimer.Stop();
-                    break;
-                case TimersAvailable.secondBlinkTimer:
-                    isSecondBlinkTimer = false;
-                    secondBlinkTimer.Stop();
                     break;
                 default:
                     throw new ArgumentException("Unhandled timer: " + timerName);
@@ -129,10 +164,6 @@ namespace namespaceProgram
                     isFirstBlinkTimer = false;
                     firstBlinkTimer.Close();
                     break;
-                case TimersAvailable.secondBlinkTimer:
-                    isSecondBlinkTimer = false;
-                    secondBlinkTimer.Close();
-                    break;
                 default:
                     throw new ArgumentException("Unhandled timer: " + timerName);
             }
@@ -147,12 +178,13 @@ namespace namespaceProgram
         public void OnverifyingBlinkTimerEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
             CloseTimer(TimersAvailable.verifyingBlinkTimer);
-
+            OnVerifyingTimerIsUp(new EventArgs());
+            OnAllowingCursorToMove(new EventArgs());
             //Console.WriteLine("fin timer vérif");
-            if (!isFirstBlinkTimer)
-            {
-                mmgt.setIsCursorAllowedToMove(true);//---------------------------------------------
-            }
+            //if (!isFirstBlinkTimer)
+            //{
+            //    mmgt.setIsCursorAllowedToMove(true);//---------------------------------------------
+            //}
         }
 
         /// <summary>
@@ -162,31 +194,13 @@ namespace namespaceProgram
         /// <param name="e"></param>
         public void OnfirstBlinkTimerEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
-            mmgt.setIsCursorAllowedToMove(true);//---------------------------------------------
-
             CloseTimer(TimersAvailable.firstBlinkTimer);
+            OnFirstTimerIsUp(new EventArgs());
+            OnAllowingCursorToMove(new EventArgs());
+            // mmgt.setIsCursorAllowedToMove(true);//---------------------------------------------
+
         }
 
-        /// <summary>
-        /// Event called when second blink timer is finished, close timer, allowMouseToMove and
-        /// left or right click depending on the blinking during the second timer's duration
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="e"></param>
-        public void OnSecondBlinkTimerEvent(Object source, System.Timers.ElapsedEventArgs e, int leftEyeCounter, int rightEyeCounter, int updateXPosition, int updateYPosition)
-        {
-
-            mmgt.LeftClick();//---------------------------------------------
-
-
-            mmgt.setIsCursorAllowedToMove(true);//---------------------------------------------
-            //Console.WriteLine("cursorMoves event secondblink");
-
-
-            CloseTimer(TimersAvailable.secondBlinkTimer);
-            //Console.WriteLine("fin second timer, cursor moves");
-            //Console.WriteLine();
-        }
     }
 }
 

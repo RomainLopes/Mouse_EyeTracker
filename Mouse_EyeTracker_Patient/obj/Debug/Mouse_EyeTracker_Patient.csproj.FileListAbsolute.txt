@@ -1,0 +1,13 @@
+D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\bin\Debug\Tobii.EyeX.Client.dll
+D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\bin\Debug\Mouse_EyeTracker_Patient.exe.config
+D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\bin\Debug\Mouse_EyeTracker_Patient.exe
+D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\bin\Debug\Mouse_EyeTracker_Patient.pdb
+D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\bin\Debug\EyeXFramework.dll
+D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\bin\Debug\Tobii.EyeX.Client.Net20.dll
+D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\obj\Debug\Mouse_EyeTracker_Patient.csprojAssemblyReference.cache
+D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\obj\Debug\Mouse_EyeTracker_Patient.Properties.Resources.resources
+D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\obj\Debug\Mouse_EyeTracker_Patient.csproj.GenerateResource.cache
+D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\obj\Debug\Mouse_EyeTracker_Patient.csproj.CoreCompileInputs.cache
+D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\obj\Debug\Mouse_EyeTracker_Patient.csproj.CopyComplete
+D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\obj\Debug\Mouse_EyeTracker_Patient.exe
+D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\obj\Debug\Mouse_EyeTracker_Patient.pdb

@@ -16,6 +16,13 @@ namespace Mouse_EyeTracker_Patient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            EyeTrackerDataManagement etdmgt = new EyeTrackerDataManagement();
+            MouseManagement mmgt = new MouseManagement();
+            TimerBlinkManagement tbmgt = new TimerBlinkManagement();
+
+            EyeTracker_Management etmgt = new EyeTracker_Management(mmgt, tbmgt, etdmgt);
+
             Application.Run(new Form1());
         }
     }
