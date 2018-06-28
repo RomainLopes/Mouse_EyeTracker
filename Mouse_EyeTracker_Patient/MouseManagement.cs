@@ -32,7 +32,7 @@ namespace Mouse_EyeTracker_Patient
                 CursorNotAllowedToMove(this, e);
             else
             {
-                Console.WriteLine("NullPointer OnNotCursorAllowedToMove");
+                Console.WriteLine("NullPointer OnNCursorNotAllowedToMove");
             }
         }
 

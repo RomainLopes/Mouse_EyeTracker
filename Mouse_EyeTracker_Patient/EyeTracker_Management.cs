@@ -103,6 +103,10 @@ namespace Mouse_EyeTracker_Patient
 
         public EyeTracker_Management(MouseManagement mmgt,TimerBlinkManagement tbm , EyeTrackerDataManagement etdm)
         {
+            this.tbm = tbm;
+            this.mmgt = mmgt;
+            this.etdm = etdm;
+
             eyeXHost = new EyeXHost();
             eyeXHost.Start();
 

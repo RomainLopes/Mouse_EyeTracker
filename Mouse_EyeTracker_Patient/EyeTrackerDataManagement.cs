@@ -15,6 +15,7 @@ namespace Mouse_EyeTracker_Patient
     {
         #region Cursor's position variables
 
+        private static int ScreenBottomLimit = Screen.PrimaryScreen.Bounds.Height - 10;
         /// <summary>
         /// number of position used to calculate the average gaze's position
         /// </summary>
@@ -115,7 +116,7 @@ namespace Mouse_EyeTracker_Patient
             updateXPosition = UpdateCursorPosition(rawXPosition, "x");
             updateYPosition = UpdateCursorPosition(rawYPosition, "y");
 
-            if (updateYPosition >= Screen.PrimaryScreen.Bounds.Height - 10)
+            if ( (updateYPosition >= ScreenBottomLimit) && (Y_CursorAveragePosition_Remembered[r - 2] < ScreenBottomLimit) )
             {
                 OnCursorInBottomMidlleScreen(new EventArgs());
             }
@@ -124,13 +125,14 @@ namespace Mouse_EyeTracker_Patient
         #endregion
 
         #region GazeTracking Event
-        public EventHandler GazeTracked;
-        public EventHandler GazeNotTracked;
+        // public event EventHandler FooEvent = new EventHandler((e, a) => { });
+        public event EventHandler GazeTracked;// = (s, e) => { };
+        public event EventHandler GazeNotTracked;// = (s, e) => { };
 
         protected virtual void OnGazeTracked(EventArgs e)
         {
             if (GazeTracked != null)
-                GazeTracked(this, e);
+                GazeTracked(this, null);
             else
             {
                 Console.WriteLine("NullPointer OnGazeTracked");
@@ -139,7 +141,7 @@ namespace Mouse_EyeTracker_Patient
         protected virtual void OnGazeNotTracked(EventArgs e)
         {
             if (GazeNotTracked != null)
-                GazeNotTracked(this, e);
+                GazeNotTracked(this, null);
             else
             {
                 Console.WriteLine("NullPointer OnGazeNotTracked");
