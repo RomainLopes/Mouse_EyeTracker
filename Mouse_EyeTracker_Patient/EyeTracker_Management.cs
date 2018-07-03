@@ -121,5 +121,11 @@ namespace Mouse_EyeTracker_Patient
             tbm.AllowingCursorToMove += (s, e) => mmgt.setIsCursorAllowedToMove(true);
 
         }
+
+        public void Close_EyeTracker_Management()
+        {
+            lightlyFilteredGazeDataStream.Dispose();
+            eyeXHost.Dispose();
+        }
     }
 }

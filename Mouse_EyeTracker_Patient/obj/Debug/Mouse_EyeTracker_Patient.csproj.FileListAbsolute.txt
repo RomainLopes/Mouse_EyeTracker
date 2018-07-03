@@ -11,3 +11,9 @@ D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\obj\Debug\Mouse_Ey
 D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\obj\Debug\Mouse_EyeTracker_Patient.csproj.CopyComplete
 D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\obj\Debug\Mouse_EyeTracker_Patient.exe
 D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\obj\Debug\Mouse_EyeTracker_Patient.pdb
+D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\bin\Debug\CircularProgressBar.dll
+D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\bin\Debug\WinFormAnimation.dll
+D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\bin\Debug\CircularProgressBar.xml
+D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\bin\Debug\WinFormAnimation.xml
+D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\obj\Debug\Mouse_EyeTracker_Patient.Form1.resources
+D:\cours\2018 Japon\Mouse_EyeTracker\Mouse_EyeTracker_Patient\obj\Debug\Mouse_EyeTracker_Patient.Form2.resources
