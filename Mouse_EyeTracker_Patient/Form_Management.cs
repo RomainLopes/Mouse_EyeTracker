@@ -69,9 +69,6 @@ namespace Mouse_EyeTracker_Patient
             this.tc.TimerCPB3IsUp += (s, e) => this.OnTimerCPB3IsUp();
             this.tc.TimerCPB4IsUp += (s, e) => this.OnTimerCPB4IsUp();
 
-            //Application.Run(new Form1());
-
-            
 
         }
 

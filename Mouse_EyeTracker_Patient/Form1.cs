@@ -503,11 +503,7 @@ namespace Mouse_EyeTracker_Patient
            
         }
 
-
-
-
         #endregion
-
 
     }
 }
