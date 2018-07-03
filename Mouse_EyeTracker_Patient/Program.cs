@@ -23,11 +23,14 @@ namespace Mouse_EyeTracker_Patient
 
             EyeTracker_Management etmgt = new EyeTracker_Management(mmgt, tbmgt, etdmgt);
 
+
             Form1 f1 = new Form1();
             Form2 f2 = new Form2();
             TimerControl tc = new TimerControl();
 
             Form_Management fmgt = new Form_Management(tc, f1, f2);
+
+            fmgt.RunF1();
 
             Console.WriteLine("fermeture programme");
             etmgt.Close_EyeTracker_Management();

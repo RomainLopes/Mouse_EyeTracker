@@ -49,30 +49,36 @@ namespace Mouse_EyeTracker_Patient
             //tc.timeMsTimer = 2000;
             //f1.maximunProgressBar = 2000;
 
-            f1.TriggerStartTimerCPB1 += (s, e) => tc.timerCPB1Start();
-            f1.TriggerStartTimerCPB2 += (s, e) => tc.timerCPB2Start();
-            f1.TriggerStartTimerCPB3 += (s, e) => tc.timerCPB3Start();
-            f1.TriggerStartTimerCPB4 += (s, e) => tc.timerCPB4Start();
+            this.f1.TriggerStartTimerCPB1 += (s, e) => this.tc.timerCPB1Start();
+            this.f1.TriggerStartTimerCPB2 += (s, e) => this.tc.timerCPB2Start();
+            this.f1.TriggerStartTimerCPB3 += (s, e) => this.tc.timerCPB3Start();
+            this.f1.TriggerStartTimerCPB4 += (s, e) => this.tc.timerCPB4Start();
 
-            f1.TriggerCloseTimerCPB1 += (s, e) => tc.timerCPB1Close();
-            f1.TriggerCloseTimerCPB2 += (s, e) => tc.timerCPB2Close();
-            f1.TriggerCloseTimerCPB3 += (s, e) => tc.timerCPB3Close();
-            f1.TriggerCloseTimerCPB4 += (s, e) => tc.timerCPB4Close();
+            this.f1.TriggerCloseTimerCPB1 += (s, e) => this.tc.timerCPB1Close();
+            this.f1.TriggerCloseTimerCPB2 += (s, e) => this.tc.timerCPB2Close();
+            this.f1.TriggerCloseTimerCPB3 += (s, e) => this.tc.timerCPB3Close();
+            this.f1.TriggerCloseTimerCPB4 += (s, e) => this.tc.timerCPB4Close();
 
-            tc.TimerCPB1Update += (s, e) => f1.UpdateCircularProgressBar1(e.IntValue);
-            tc.TimerCPB2Update += (s, e) => f1.UpdateCircularProgressBar2(e.IntValue);
-            tc.TimerCPB3Update += (s, e) => f1.UpdateCircularProgressBar3(e.IntValue);
-            tc.TimerCPB4Update += (s, e) => f1.UpdateCircularProgressBar4(e.IntValue);
+            this.tc.TimerCPB1Update += (s, e) => this.f1.UpdateCircularProgressBar1(e.IntValue);
+            this.tc.TimerCPB2Update += (s, e) => this.f1.UpdateCircularProgressBar2(e.IntValue);
+            this.tc.TimerCPB3Update += (s, e) => this.f1.UpdateCircularProgressBar3(e.IntValue);
+            this.tc.TimerCPB4Update += (s, e) => this.f1.UpdateCircularProgressBar4(e.IntValue);
 
-            tc.TimerCPB1IsUp += (s, e) => this.OnTimerCPB1IsUp();
-            tc.TimerCPB2IsUp += (s, e) => this.OnTimerCPB2IsUp();
-            tc.TimerCPB3IsUp += (s, e) => this.OnTimerCPB3IsUp();
-            tc.TimerCPB4IsUp += (s, e) => this.OnTimerCPB4IsUp();
+            this.tc.TimerCPB1IsUp += (s, e) => this.OnTimerCPB1IsUp();
+            this.tc.TimerCPB2IsUp += (s, e) => this.OnTimerCPB2IsUp();
+            this.tc.TimerCPB3IsUp += (s, e) => this.OnTimerCPB3IsUp();
+            this.tc.TimerCPB4IsUp += (s, e) => this.OnTimerCPB4IsUp();
 
-            Application.Run(new Form1());
+            //Application.Run(new Form1());
+
+            
 
         }
 
+        public void RunF1()
+        {
+            Application.Run(f1);
+        }
 
 
 

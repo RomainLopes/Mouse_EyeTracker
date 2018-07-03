@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Tobii.EyeX.Framework;
-using EyeXFramework;
 
 
 
@@ -61,12 +52,16 @@ namespace Mouse_EyeTracker_Patient
         #endregion
 
         #region events
+
+ 
+
+
         public EventHandler TriggerStartTimerCPB1;
-        protected virtual void OnTriggerStartTimerCPB1(EventArgs e)
+        public virtual void OnTriggerStartTimerCPB1(EventArgs e)
         {
-            EventHandler handler = TriggerStartTimerCPB1;
-            if (handler != null)
-                handler(this, e);
+            //EventHandler handler = TriggerStartTimerCPB1;
+            if (TriggerStartTimerCPB1 != null)
+                TriggerStartTimerCPB1(this, null);
             else
             {
                 Console.WriteLine("NullPointer OnTriggerStartTimerCPB1");

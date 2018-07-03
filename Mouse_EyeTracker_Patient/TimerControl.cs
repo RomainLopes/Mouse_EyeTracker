@@ -174,7 +174,7 @@ namespace Mouse_EyeTracker_Patient
                 countUpdateProgressBar = 0;
                 timerCPB2.Close();
 
-                OnTimerCPB1IsUp(new EventArgs());
+                OnTimerCPB2IsUp(new EventArgs());
             }
         }
 
@@ -191,7 +191,7 @@ namespace Mouse_EyeTracker_Patient
                 countUpdateProgressBar = 0;
                 timerCPB3.Close();
 
-                OnTimerCPB1IsUp(new EventArgs());
+                OnTimerCPB3IsUp(new EventArgs());
             }
         }
 
@@ -208,7 +208,7 @@ namespace Mouse_EyeTracker_Patient
                 countUpdateProgressBar = 0;
                 timerCPB4.Close();
 
-                OnTimerCPB1IsUp(new EventArgs());
+                OnTimerCPB4IsUp(new EventArgs());
             }
         }
         #endregion
