@@ -28,7 +28,7 @@ namespace Mouse_EyeTracker_Patient
             Form2 f2 = new Form2();
             TimerControl tc = new TimerControl();
 
-            Form_Management fmgt = new Form_Management(tc, f1, f2);
+            Form_Management fmgt = new Form_Management(tc, f1, f2, etmgt);
 
             fmgt.RunF1();
 

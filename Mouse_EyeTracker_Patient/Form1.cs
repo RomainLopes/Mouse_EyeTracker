@@ -14,14 +14,14 @@ namespace Mouse_EyeTracker_Patient
             this.maximunProgressBar = i;
         }
 
-        private int freezeCount = 0;
+        public int freezeCount = 0;
 
-        private Boolean isReadyToClick = false;
+        public Boolean isReadyToClick = false;
 
-        private Boolean isCursorOnPanel1 = false;
-        private Boolean isCursorOnPanel2 = false;
-        private Boolean isCursorOnPanel3 = false;
-        private Boolean isCursorOnPanel4 = false;
+        public Boolean isCursorOnPanel1 = false;
+        public Boolean isCursorOnPanel2 = false;
+        public Boolean isCursorOnPanel3 = false;
+        public Boolean isCursorOnPanel4 = false;
 
         public Boolean isPanel1Activated { get; set; } = false;
         public Boolean isPanel2Activated { get; set; } = false;

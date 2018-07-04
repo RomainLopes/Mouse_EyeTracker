@@ -32,15 +32,16 @@ namespace Mouse_EyeTracker_Patient
         }
 
         #region Event for the UI
-        public EventHandler CursorIsFrozen;
+        public delegate void CustomEventHandler(object sender, CustomEventArgs a);
 
-        protected virtual void OnCursorIsFrozen(EventArgs e)
+        public CustomEventHandler CursorAllowedToMoveChanged;
+        protected virtual void OnCursorAllowedToMoveChanged(CustomEventArgs e)
         {
-            if (CursorIsFrozen != null)
-                CursorIsFrozen(this, e);
+            if (CursorAllowedToMoveChanged != null)
+                CursorAllowedToMoveChanged(this, e);
             else
             {
-                Console.WriteLine("NullPointer OnCursorIsFrozen");
+                Console.WriteLine("NullPointer OnTimerCPB1Update");
             }
         }
         #endregion
@@ -58,19 +59,7 @@ namespace Mouse_EyeTracker_Patient
             if ((tbm.getIsVerifyingBlinkTimer() == false) && (tbm.getIsFirstBlinkTimer() == false))
             {
                 mmgt.setIsCursorAllowedToMove(false);
-                tbm.StartTimer(TimerBlinkManagement.TimersAvailable.verifyingBlinkTimer);
-                OnCursorIsFrozen(new EventArgs());
-                /*
-                if (StaticClass.isPanel1Activated && StaticClass.isPanel2Activated && StaticClass.isPanel3Activated && StaticClass.isPanel4Activated)
-                {
-                    StaticClass.freezeCount += 1;
-                }
-                if (StaticClass.isPanel1Activated && StaticClass.isPanel2Activated && StaticClass.isPanel3Activated && StaticClass.isPanel4Activated
-                    && StaticClass.isCursorOnPanel1 && !StaticClass.isReadyToClick && StaticClass.freezeCount > 1)
-                {
-                    StaticClass.isReadyToClick = true;
-                }
-                */
+                tbm.StartTimer(TimerBlinkManagement.TimersAvailable.verifyingBlinkTimer);  
             }
 
             //second eyes closing, run blinkverifying, firstTimer still running
@@ -119,6 +108,8 @@ namespace Mouse_EyeTracker_Patient
             etdm.GazeTracked += (s, e) => this.OnGazeTracked();
 
             tbm.AllowingCursorToMove += (s, e) => mmgt.setIsCursorAllowedToMove(true);
+
+            mmgt.CursorAllowedToMoveChanged += (s, e) => this.OnCursorAllowedToMoveChanged(new CustomEventArgs(e.BooleanValue));
 
         }
 

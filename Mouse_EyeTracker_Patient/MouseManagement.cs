@@ -13,28 +13,20 @@ namespace Mouse_EyeTracker_Patient
 
         private Boolean isCursorAllowedToMove = true;
 
-        public EventHandler CursorAllowedToMove;
-        public EventHandler CursorNotAllowedToMove;
 
-        protected virtual void OnCursorAllowedToMove(EventArgs e)
+        public delegate void CustomEventHandler(object sender, CustomEventArgs a);
+
+        public CustomEventHandler CursorAllowedToMoveChanged;
+        protected virtual void OnCursorAllowedToMoveChanged(CustomEventArgs e)
         {
-            if (CursorAllowedToMove != null)
-                CursorAllowedToMove(this, e);
+            if (CursorAllowedToMoveChanged != null)
+                CursorAllowedToMoveChanged(this, e);
             else
             {
-                Console.WriteLine("NullPointer OnCursorAllowedToMove");
+                Console.WriteLine("NullPointer OnTimerCPB1Update");
             }
         }
 
-        protected virtual void OnCursorNotAllowedToMove(EventArgs e)
-        {
-            if (CursorNotAllowedToMove != null)
-                CursorNotAllowedToMove(this, e);
-            else
-            {
-                Console.WriteLine("NullPointer OnNCursorNotAllowedToMove");
-            }
-        }
 
         public bool getIsCursorAllowedToMove()
         {
@@ -47,24 +39,12 @@ namespace Mouse_EyeTracker_Patient
 
             if (value == true)
             {
-                OnCursorAllowedToMove(new EventArgs());
+                OnCursorAllowedToMoveChanged(new CustomEventArgs(value));
             }
             else
             {
-                OnCursorNotAllowedToMove(new EventArgs());
+                OnCursorAllowedToMoveChanged(new CustomEventArgs(value));
             }
-
-            // frn.DisplayNextMessageLabelInstruction();----------------------------
-            // if (value == false && StaticClass.freezeCount > 0)
-            // {
-            //frn.setPanel6Visible(true);
-            //Cursor.Current = Cursors.Cross;
-            // }
-            // else
-            // {
-            //Cursor.Current = Cursors.Default;
-            //frn.setPanel6Visible(false);
-            //  }
         }
 
         #region Windows API (user32.dll) imported Code
