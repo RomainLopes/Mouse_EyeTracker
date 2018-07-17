@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Mouse_EyeTracker_Patient
 {
-    class Form_Management
+    class Form_Management : ApplicationContext
     {
         System.Drawing.Color ChartreuseColor = System.Drawing.Color.Chartreuse;
 
+        private Thread threadForm2;
         private TimerControl tc;
         private Form1 f1;
         private Form2 f2;
@@ -56,28 +59,32 @@ namespace Mouse_EyeTracker_Patient
             f1.DisplayNextMessageLabelInstruction();
             if (value == false && f1.freezeCount > 0)
             {
-            f1.setPanel6Visible(true);
-            //Cursor.Current = Cursors.Cross;
+                f1.setPanel6Visible(true);
+                //Cursor.Current = Cursors.Cross;
             }
             else
             {
-           //Cursor.Current = Cursors.Default;
-            f1.setPanel6Visible(false);
+                //Cursor.Current = Cursors.Default;
+                f1.setPanel6Visible(false);
             }
-
-
         }
 
-        public Form_Management(TimerControl tc, Form1 f1, Form2 f2, EyeTracker_Management etmgt)
+        public void OnCursorInBottomMidlleScreen()
         {
-            this.tc = tc;
-            this.f1 = f1;
-            this.f2 = f2;
-            this.etmgt = etmgt;
 
-            //tc.timeMsTimer = 2000;
-            //f1.maximunProgressBar = 2000;
+            Console.WriteLine("entrée millieu bas écran");
+            //f2.TopMost = true;
+            f2.Show();
+        }
 
+        private void ThreadForm2SetUp()
+        {
+            etmgt.CursorInBottomMidlleScreen += (s, e) => this.OnCursorInBottomMidlleScreen();
+            Application.Run(this.f2); // <-- other form started on its own UI thread
+        }
+
+        private void Form1SetUp()
+        {
             f1.TriggerStartTimerCPB1 += (s, e) => tc.timerCPB1Start();
             f1.TriggerStartTimerCPB2 += (s, e) => tc.timerCPB2Start();
             f1.TriggerStartTimerCPB3 += (s, e) => tc.timerCPB3Start();
@@ -100,14 +107,27 @@ namespace Mouse_EyeTracker_Patient
 
             etmgt.CursorAllowedToMoveChanged += (s, e) => this.OnCursorAllowedToMoveChanged(e.BooleanValue);
 
-
-        }
-
-        public void RunF1()
-        {
             Application.Run(f1);
         }
 
+        public Form_Management(TimerControl tc, Form1 f1, Form2 f2, EyeTracker_Management etmgt)
+        {
+            this.tc = tc;
+            this.f1 = f1;
+            this.f2 = f2;
+            this.etmgt = etmgt;
+            //tc.timeMsTimer = 2000;
+            //f1.maximunProgressBar = 2000;
+
+            threadForm2 = new Thread(ThreadForm2SetUp);
+            // allow UI with ApartmentState.STA though [STAThread] above should give that to you
+            threadForm2.TrySetApartmentState(ApartmentState.STA);
+            threadForm2.Start();            
+                  
+            //Form1SetUp();            
+        }
+
+        
 
 
     }

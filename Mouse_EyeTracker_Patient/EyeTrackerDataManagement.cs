@@ -88,8 +88,6 @@ namespace Mouse_EyeTracker_Patient
             }
         }
 
-
-
         #region GazeDataStream Event
         public EventHandler CursorInBottomMidlleScreen;
 

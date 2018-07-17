@@ -90,6 +90,19 @@ namespace Mouse_EyeTracker_Patient
             }
         }
 
+        public EventHandler CursorInBottomMidlleScreen;
+
+        protected virtual void OnCursorInBottomMidlleScreen(EventArgs e)
+        {
+            if (CursorInBottomMidlleScreen != null)
+                CursorInBottomMidlleScreen(this, e);
+            else
+            {
+                Console.WriteLine("NullPointer OnCursorInBottomMidlleScreen");
+            }
+        }
+
+
         public EyeTracker_Management(MouseManagement mmgt,TimerBlinkManagement tbm , EyeTrackerDataManagement etdm)
         {
             this.tbm = tbm;
@@ -110,7 +123,7 @@ namespace Mouse_EyeTracker_Patient
             tbm.AllowingCursorToMove += (s, e) => mmgt.setIsCursorAllowedToMove(true);
 
             mmgt.CursorAllowedToMoveChanged += (s, e) => this.OnCursorAllowedToMoveChanged(new CustomEventArgs(e.BooleanValue));
-
+            etdm.CursorInBottomMidlleScreen += (s, e) => this.OnCursorInBottomMidlleScreen(new EventArgs());
         }
 
         public void Close_EyeTracker_Management()

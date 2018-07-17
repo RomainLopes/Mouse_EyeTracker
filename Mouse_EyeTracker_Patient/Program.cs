@@ -30,10 +30,11 @@ namespace Mouse_EyeTracker_Patient
 
             Form_Management fmgt = new Form_Management(tc, f1, f2, etmgt);
 
-            fmgt.RunF1();
+            //fmgt.RunF1();
+            //Application.Run(fmgt);
 
             Console.WriteLine("fermeture programme");
-            etmgt.Close_EyeTracker_Management();
+            //etmgt.Close_EyeTracker_Management();
         }
     }
 }

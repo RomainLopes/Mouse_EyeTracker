@@ -27,7 +27,6 @@ namespace Mouse_EyeTracker_Patient
             }
         }
 
-
         public bool getIsCursorAllowedToMove()
         {
             return isCursorAllowedToMove;
