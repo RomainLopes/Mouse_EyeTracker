@@ -115,7 +115,6 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Mouse Down hold/Mouse Up";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -178,12 +177,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(712, 366);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
-            this.Activated += new System.EventHandler(this.Form2_Activated);
             this.Load += new System.EventHandler(this.Form2_Load);
             this.MouseLeave += new System.EventHandler(this.Form2_MouseLeave);
             this.panel3.ResumeLayout(false);
