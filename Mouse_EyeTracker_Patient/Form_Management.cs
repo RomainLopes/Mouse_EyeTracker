@@ -6,11 +6,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace Mouse_EyeTracker_Patient
 {
     class Form_Management : ApplicationContext
     {
+
         System.Drawing.Color ChartreuseColor = System.Drawing.Color.Chartreuse;
 
         private Thread threadForm2;

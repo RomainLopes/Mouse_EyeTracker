@@ -2,56 +2,38 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Timers;
 
 namespace Mouse_EyeTracker_Patient
 {
-    /// <summary>
-    /// Struct representing a point.
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public struct POINT
-    {
-        public int X;
-        public int Y;
-
-        public static implicit operator Point(POINT point)
-        {
-            return new Point(point.X, point.Y);
-        }
-    }
-
-    /// <summary>
-    /// Retrieves the cursor's position, in screen coordinates.
-    /// </summary>
-    /// <see>See MSDN documentation for further information.</see>
-    [DllImport("user32.dll")]
-    static extern bool GetCursorPos(out POINT lpPoint);
-
-    public static Point GetCursorPosition()
-    {
-        POINT lpPoint;
-        GetCursorPos(out lpPoint);
-        //bool success = User32.GetCursorPos(out lpPoint);
-        // if (!success)
-
-        return lpPoint;
-    }
-
-
-
-
 
     public partial class Form2 : Form
     {
-        public EventHandler CursorMoves;
-        protected virtual void OnCursorMoves(EventArgs e)
+        private Thread CursorPositionCheckThread;
+        private System.Timers.Timer timerCheckPos;
+
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct PointInter
         {
-            if (CursorMoves != null)
-                CursorMoves(this, e);
-            else
-            {
-                Console.WriteLine("NullPointer OnCursorMoves");
-            }
+            public int X;
+            public int Y;
+            public static explicit operator Point(PointInter point) => new Point(point.X, point.Y);
+        }
+
+        #region user32 import
+        [DllImport("user32.dll")]
+        public static extern bool GetCursorPos(out PointInter lpPoint);
+        #endregion
+
+        // For your convenience
+        public static Point GetCursorPosition()
+        {
+            PointInter lpPoint;
+            GetCursorPos(out lpPoint);
+            return (Point)lpPoint;
         }
 
         public Form2()
@@ -79,7 +61,15 @@ namespace Mouse_EyeTracker_Patient
             double a = (Screen.PrimaryScreen.Bounds.Width - this.Width) / 2;
             double b = (Screen.PrimaryScreen.Bounds.Height - this.Height);
 
-            
+            Thread CursorPositionCheckThread = new Thread(CursorPositionCheck);
+            timerCheckPos = new System.Timers.Timer(10);
+            timerCheckPos.Elapsed += (s, f) => MyControl_MouseLeave();
+            CursorPositionCheckThread.Start();
+        }
+
+        public void CursorPositionCheck()
+        {
+
         }
 
 
@@ -91,17 +81,19 @@ namespace Mouse_EyeTracker_Patient
             int a = this.Location.X + this.Width;
             int b = this.Location.Y + this.Height;
 
-            Console.WriteLine("cursor pos: " + Cursor.Position.X + " , " + Cursor.Position.Y);
+            Console.WriteLine("cursor pos: " + GetCursorPosition().X + " , " + GetCursorPosition().Y);
             Console.WriteLine("bound Xpos: " + this.Location.X + " and " + a);
             Console.WriteLine("bound Ypos: " + this.Location.Y + " and " + b);
             
 
-            if ((Cursor.Position.X <= this.Location.X + 8) || (Cursor.Position.X >= (this.Location.X + this.Width-8) ) 
-            || (Cursor.Position.Y <= this.Location.Y + 20) || (Cursor.Position.Y >= (this.Location.Y + this.Height-8) ) )
+            if (( GetCursorPosition().X <= this.Location.X ) || ( GetCursorPosition().X >= (this.Location.X + this.Width ) ) 
+            || ( GetCursorPosition().Y <= this.Location.Y ) || ( GetCursorPosition().Y >= (this.Location.Y + this.Height ) ) )
             {
                 Console.WriteLine("trigger");
                 // the mouse is leaving the form
                 this.Hide();
+                timerCheckPos.Stop();
+                Thread.Sleep(Timeout.Infinite);
             }
             else
             {
@@ -109,49 +101,6 @@ namespace Mouse_EyeTracker_Patient
             }
         }
 
-        private void Form2_MouseLeave(object sender, EventArgs e)
-        {
-            MyControl_MouseLeave();
-        }
-
-        private void splitContainer1_MouseLeave(object sender, EventArgs e)
-        {
-            MyControl_MouseLeave();
-        }
-
-        private void splitContainer1_Panel1_MouseLeave(object sender, EventArgs e)
-        {
-            MyControl_MouseLeave();
-        }
-
-        private void panel5_MouseLeave(object sender, EventArgs e)
-        {
-            MyControl_MouseLeave();
-        }
-
-        private void splitContainer1_Panel2_MouseLeave(object sender, EventArgs e)
-        {
-            MyControl_MouseLeave();
-        }
-
-        private void tableLayoutPanel1_MouseLeave(object sender, EventArgs e)
-        {
-            MyControl_MouseLeave();
-        }
-
-        private void panel1_MouseLeave(object sender, EventArgs e)
-        {
-            MyControl_MouseLeave();
-        }
-
-        private void panel3_MouseLeave(object sender, EventArgs e)
-        {
-            MyControl_MouseLeave();
-        }
-
-        private void panel2_MouseLeave(object sender, EventArgs e)
-        {
-            MyControl_MouseLeave();
-        }
+       
     }
 }

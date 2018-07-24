@@ -57,7 +57,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(232, 276);
             this.panel3.TabIndex = 0;
-            this.panel3.MouseLeave += new System.EventHandler(this.panel3_MouseLeave);
             // 
             // button3
             // 
@@ -80,7 +79,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(231, 276);
             this.panel2.TabIndex = 1;
-            this.panel2.MouseLeave += new System.EventHandler(this.panel2_MouseLeave);
             // 
             // button2
             // 
@@ -103,7 +101,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(231, 276);
             this.panel1.TabIndex = 2;
-            this.panel1.MouseLeave += new System.EventHandler(this.panel1_MouseLeave);
             // 
             // button1
             // 
@@ -134,7 +131,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(712, 282);
             this.tableLayoutPanel1.TabIndex = 3;
-            this.tableLayoutPanel1.MouseLeave += new System.EventHandler(this.tableLayoutPanel1_MouseLeave);
             // 
             // splitContainer1
             // 
@@ -150,17 +146,14 @@
             this.splitContainer1.Panel1.Controls.Add(this.panel5);
             this.splitContainer1.Panel1.Cursor = System.Windows.Forms.Cursors.Default;
             this.splitContainer1.Panel1.Enabled = false;
-            this.splitContainer1.Panel1.MouseLeave += new System.EventHandler(this.splitContainer1_Panel1_MouseLeave);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel1);
             this.splitContainer1.Panel2.Enabled = false;
-            this.splitContainer1.Panel2.MouseLeave += new System.EventHandler(this.splitContainer1_Panel2_MouseLeave);
             this.splitContainer1.Size = new System.Drawing.Size(712, 366);
             this.splitContainer1.SplitterDistance = 80;
             this.splitContainer1.TabIndex = 4;
-            this.splitContainer1.MouseLeave += new System.EventHandler(this.splitContainer1_MouseLeave);
             // 
             // panel5
             // 
@@ -171,7 +164,6 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(712, 80);
             this.panel5.TabIndex = 0;
-            this.panel5.MouseLeave += new System.EventHandler(this.panel5_MouseLeave);
             // 
             // Form2
             // 
@@ -184,7 +176,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
-            this.MouseLeave += new System.EventHandler(this.Form2_MouseLeave);
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
