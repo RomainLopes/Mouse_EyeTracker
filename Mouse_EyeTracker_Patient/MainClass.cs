@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Mouse_EyeTracker_Patient
 {
-    static class Program
+    static class MainClass
     {
         /// <summary>
         /// Point d'entrée principal de l'application.
@@ -24,17 +24,17 @@ namespace Mouse_EyeTracker_Patient
             EyeTracker_Management etmgt = new EyeTracker_Management(mmgt, tbmgt, etdmgt);
 
 
-            Form1 f1 = new Form1();
-            Form2 f2 = new Form2();
+            FormDemo f1 = new FormDemo();
+            FormCommands f2 = new FormCommands();
             TimerControl tc = new TimerControl();
 
             Form_Management fmgt = new Form_Management(tc, f1, f2, etmgt);
 
-            //fmgt.RunF1();
-            //Application.Run(fmgt);
+            
+            Application.Run(fmgt);
 
             Console.WriteLine("fermeture programme");
-            //etmgt.Close_EyeTracker_Management();
+            etmgt.Close_EyeTracker_Management();
         }
     }
 }

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 
-
-
-
 namespace Mouse_EyeTracker_Patient
 {
-    public partial class Form1 : Form
+    public partial class FormDemo : Form
     {
         #region Variables
         public int maximunProgressBar { get; set; } = 2000;
@@ -148,7 +145,7 @@ namespace Mouse_EyeTracker_Patient
 
         #endregion
 
-        public Form1()
+        public FormDemo()
         {
             InitializeComponent();
         }
@@ -496,20 +493,7 @@ namespace Mouse_EyeTracker_Patient
             circularProgressBar4.Value = 0;
             circularProgressBar4.Minimum = 0;
             circularProgressBar4.Maximum = maximunProgressBar;
-
         }
-
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-           
-        }
-
         #endregion
-
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            
-        }
     }
 }
-

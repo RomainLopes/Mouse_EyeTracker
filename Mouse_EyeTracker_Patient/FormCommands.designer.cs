@@ -1,6 +1,6 @@
 ﻿namespace Mouse_EyeTracker_Patient
 {
-    partial class Form2
+    partial class FormCommands
     {
         /// <summary>
         /// Required designer variable.

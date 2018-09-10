@@ -17,8 +17,8 @@ namespace Mouse_EyeTracker_Patient
 
         private Thread threadForm2;
         private TimerControl tc;
-        private Form1 f1;
-        private Form2 f2;
+        private FormDemo f1;
+        private FormCommands f2;
         private EyeTracker_Management etmgt;
 
         public void OnTimerCPB1IsUp()
@@ -73,7 +73,6 @@ namespace Mouse_EyeTracker_Patient
 
         public void OnCursorInBottomMidlleScreen()
         {
-
             Console.WriteLine("entrée millieu bas écran");
             //f2.TopMost = true;
             f2.Show();
@@ -81,7 +80,7 @@ namespace Mouse_EyeTracker_Patient
 
         private void ThreadForm2SetUp()
         {
-            etmgt.CursorInBottomMidlleScreen += (s, e) => this.OnCursorInBottomMidlleScreen();
+           // etmgt.CursorInBottomMidlleScreen += (s, e) => f2.ShowCommandPanel();
             Application.Run(this.f2); // <-- other form started on its own UI thread
         }
 
@@ -112,7 +111,7 @@ namespace Mouse_EyeTracker_Patient
             Application.Run(f1);
         }
 
-        public Form_Management(TimerControl tc, Form1 f1, Form2 f2, EyeTracker_Management etmgt)
+        public Form_Management(TimerControl tc, FormDemo f1, FormCommands f2, EyeTracker_Management etmgt)
         {
             this.tc = tc;
             this.f1 = f1;
@@ -120,12 +119,13 @@ namespace Mouse_EyeTracker_Patient
             this.etmgt = etmgt;
             //tc.timeMsTimer = 2000;
             //f1.maximunProgressBar = 2000;
-
+            Form1SetUp();
+            
             threadForm2 = new Thread(ThreadForm2SetUp);
             // allow UI with ApartmentState.STA though [STAThread] above should give that to you
             threadForm2.TrySetApartmentState(ApartmentState.STA);
             threadForm2.Start();            
-                  
+              
             //Form1SetUp();            
         }
 

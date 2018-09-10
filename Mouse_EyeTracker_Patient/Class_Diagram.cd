@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Mouse_EyeTracker_Patient.EyeTracker_Management" Collapsed="true">
+    <Position X="1" Y="1.5" Width="2" />
+    <NestedTypes>
+      <Delegate Name="Mouse_EyeTracker_Patient.EyeTracker_Management.CustomEventHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>EyeTracker_Management.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAICBAQEASAAAMBAAAAARCCAAAAQAAAAAA=</HashCode>
+      <FileName>EyeTracker_Management.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mouse_EyeTracker_Patient.EyeTrackerDataManagement" Collapsed="true">
+    <Position X="4" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ABAQAAAICigABAAgAAQEIgEBAAAAABACAAABBBBAAAQ=</HashCode>
+      <FileName>EyeTrackerDataManagement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mouse_EyeTracker_Patient.Form_Management" Collapsed="true">
+    <Position X="7.25" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAASAAEAAAAIgAAAABAAAAgEAAAABBAAIAAAA0AAAAA=</HashCode>
+      <FileName>Form_Management.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mouse_EyeTracker_Patient.FormDemo" Collapsed="true">
+    <Position X="6.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CgUBQoAQIShaAfoFQDKkQQBCAAAAAQQQABQBkwBQoCA=</HashCode>
+      <FileName>FormDemo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mouse_EyeTracker_Patient.FormCommands" Collapsed="true">
+    <Position X="7.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAICAACAAAAIAAACQACICAAA8CQAAAAAAEQAIACA=</HashCode>
+      <FileName>FormCommands.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mouse_EyeTracker_Patient.MouseManagement" Collapsed="true">
+    <Position X="2" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IRAABAAADIAJAEAAAAAIARIQEAAAAQAAAAEIAASAAAA=</HashCode>
+      <FileName>MouseManagement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mouse_EyeTracker_Patient.MainClass" Collapsed="true">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>MainClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mouse_EyeTracker_Patient.TimerBlinkManagement" Collapsed="true">
+    <Position X="0.75" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAAAAABEABQAAQAQAAkAAAAIAAAgAgAIACECAgACAAA=</HashCode>
+      <FileName>TimerBlinkManagement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mouse_EyeTracker_Patient.TimerControl" Collapsed="true">
+    <Position X="8.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>iQQQAAAAAAKAiAEJABABAAAFAAAAAAAAYYAgAAAAAAA=</HashCode>
+      <FileName>TimerControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

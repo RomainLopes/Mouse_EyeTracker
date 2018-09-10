@@ -3,18 +3,17 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Timers;
 
 namespace Mouse_EyeTracker_Patient
 {
 
-    public partial class Form2 : Form
+    public partial class FormCommands : Form
     {
+        
         private Thread CursorPositionCheckThread;
         private System.Timers.Timer timerCheckPos;
 
-
+        #region user32 import and methods
         [StructLayout(LayoutKind.Sequential)]
         public struct PointInter
         {
@@ -22,21 +21,31 @@ namespace Mouse_EyeTracker_Patient
             public int Y;
             public static explicit operator Point(PointInter point) => new Point(point.X, point.Y);
         }
-
-        #region user32 import
+    
         [DllImport("user32.dll")]
         public static extern bool GetCursorPos(out PointInter lpPoint);
-        #endregion
 
-        // For your convenience
         public static Point GetCursorPosition()
         {
             PointInter lpPoint;
             GetCursorPos(out lpPoint);
             return (Point)lpPoint;
         }
+        #endregion
 
-        public Form2()
+        public EventHandler ShowCommandPanel;
+
+        protected virtual void OnShowCommandPanel(EventArgs e)
+        {
+            if (ShowCommandPanel != null)
+                ShowCommandPanel(this, e);
+            else
+            {
+                Console.WriteLine("NullPointer OnShowCommandPanel");
+            }
+        }
+
+        public FormCommands()
         {
             InitializeComponent();
         }

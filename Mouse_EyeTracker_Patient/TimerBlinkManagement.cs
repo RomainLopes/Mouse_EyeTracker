@@ -1,5 +1,4 @@
 ﻿using System;
-//using namespaceProgram;
 
 namespace Mouse_EyeTracker_Patient
 {
@@ -100,9 +99,7 @@ namespace Mouse_EyeTracker_Patient
             firstBlinkTimer.Interval = 2500;
             firstBlinkTimer.Elapsed += (sender, e) => OnfirstBlinkTimerEvent(sender, e);
             firstBlinkTimer.AutoReset = false;
-
         }
-
 
         /// <summary>
         /// Start any timer named in the enumeration, and set the boolean value to true

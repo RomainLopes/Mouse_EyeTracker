@@ -1,6 +1,6 @@
 ﻿namespace Mouse_EyeTracker_Patient
 {
-    partial class Form1
+    partial class FormDemo
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -477,8 +477,6 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
